@@ -1,0 +1,49 @@
+<div class="converter" style="max-width:1200px;margin:40px auto;padding:32px 24px;background:#fff;border-radius:12px;box-shadow:0 2px 16px #0002;">
+    <h2 style="margin-bottom:32px;font-size:2rem;font-weight:700;color:#2a3a4a;text-align:center;">Konwerter HTML: Skomplikowany → Prosty</h2>
+    <h3>1. Skomplikowany HTML (wklej ze źródła strony):</h3>
+
+        <textarea [(ngModel)]="htmlInput" rows="10" cols="80" placeholder="Wklej skomplikowany HTML ze strony..."></textarea>
+        <br><br>
+
+        <div style="display:flex; gap:32px; align-items:flex-start; margin-bottom:24px;">
+            <div style="flex:1; min-width:0;">
+                <h4 style="margin:0 0 8px 0; font-size:1.1rem; color:#666;">Podgląd skomplikowanego HTML:</h4>
+                <div style="border:1px solid #e0e0e0; background:#f5f5f5; padding:12px; min-height:80px;">
+                    <div [innerHTML]="htmlInput"></div>
+                </div>
+            </div>
+            <div style="flex:1; min-width:0;">
+                <h4 style="margin:0 0 8px 0; font-size:1.1rem; color:#666;">Prosty HTML (podgląd, wyczyszczone &lt;div&gt; i &lt;p&gt;):</h4>
+                <div class="simple-html-preview" [innerHTML]="getSimpleHtmlOutput()" style="border:1px solid #ccc; padding:12px; background:#fafafa; min-height:80px;"></div>
+            </div>
+            <div style="flex:1; min-width:0;">
+                <h4 style="margin:0 0 8px 0; font-size:1.1rem; color:#666;">Max Prosty HTML (&lt;b&gt;, &lt;i&gt;, &lt;br&gt;):</h4>
+                <div style="border:1px solid #e0e0e0; background:#f5f5f5; padding:12px; min-height:80px;">
+                    <div [innerHTML]="getMinimalHtmlOutput()"></div>
+                </div>
+            </div>
+            <div style="flex:1; min-width:0;">
+                <h4 style="margin:0 0 8px 0; font-size:1.1rem; color:#666;">Tekst WhatsApp (podgląd):</h4>
+                <div style="border:1px solid #e0e0e0; background:#f5f5f5; padding:12px; min-height:80px; white-space:pre-wrap; font-family:monospace;">
+                    <div>{{ getWhatsappOutput() }}</div>
+                </div>
+            </div>
+        </div>
+
+        <button (click)="convertToMarkdown()">Konwertuj do prostego HTML</button>
+        <br><br>
+
+
+        <h3>Kod uproszczonego HTML (do kopiowania):</h3>
+        <pre style="background:#f8f8f8;border:1px solid #ddd;padding:12px;white-space:pre-wrap;word-break:break-all;">{{ simpleHtmlOutput }}</pre>
+        <button style="margin-top:8px;" (click)="copyHtmlToClipboard()">Kopiuj kod HTML</button>
+
+        <h3>Kod Max Prosty HTML (do kopiowania):</h3>
+        <pre style="background:#f8f8f8;border:1px solid #ddd;padding:12px;white-space:pre-wrap;word-break:break-all;">{{ getMinimalHtmlOutput() }}</pre>
+        <button style="margin-top:8px;" (click)="copyMinimalHtmlToClipboard()">Kopiuj Max Prosty HTML</button>
+
+    
+
+
+ 
+</div>
