@@ -83,6 +83,10 @@ export class AppComponent {
   // Zapewnij dokładnie jedną linię przerwy przed każdym <b>
   html = html.replace(/(\s*\n)?\s*<b>/g, '\n<b>');
   html = html.replace(/\n{2,}<b>/g, '\n<b>');
+  // Zamień ciągi <br> na maksymalnie dwa <br>
+  html = html.replace(/(<br\s*\/?>(\s*)?){3,}/gi, '<br><br>');
+  // Usuń <br> na końcu dokumentu
+  html = html.replace(/(<br\s*\/?>(\s*)?)+$/gi, '');
   return html;
   }
   // Kopiuje kod HTML do schowka
